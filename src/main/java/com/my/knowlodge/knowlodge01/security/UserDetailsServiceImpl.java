@@ -1,5 +1,6 @@
-package com.my.knowlodge.knowlodge01.services;
+package com.my.knowlodge.knowlodge01.security;
 
+import com.my.knowlodge.knowlodge01.exceptions.infra.PersonNotFoundException;
 import com.my.knowlodge.knowlodge01.models.AuthUser;
 import com.my.knowlodge.knowlodge01.repositories.PersonRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.personRepository.findPersonByEmail(username)
                 .map(AuthUser::new)
-                .orElseThrow(() -> new UsernameNotFoundException("User with ".concat(username).concat("not found!")));
+                .orElseThrow(PersonNotFoundException::new);
     }
 }
