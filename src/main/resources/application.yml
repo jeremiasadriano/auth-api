@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: knowledge
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:1111/person-knowledge-db
+    username: person
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

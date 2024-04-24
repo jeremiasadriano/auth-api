@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  person-db:
+    container_name: 'Person-knowledge-db'
+    image: postgres:16.0
+    restart: on-failure
+    environment:
+      POSTGRES_USER: person
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: person-knowledge-db
+    ports:
+      - '1111:5432'
+    volumes:
+      - person-knowledge:/var/lib/postgresql/data
+volumes:
+  person-knowledge:
+    name: 'person-knowledge'
