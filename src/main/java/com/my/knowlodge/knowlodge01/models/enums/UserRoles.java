@@ -1,4 +1,4 @@
-package com.my.knowlodge.knowlodge01.models.Enum;
+package com.my.knowlodge.knowlodge01.models.enums;
 
 import lombok.Getter;
 

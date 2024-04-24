@@ -12,8 +12,26 @@ public class PersonExceptionsHandler extends ResponseEntityExceptionHandler {
     private PersonExceptionModel model;
 
     @ExceptionHandler(PersonNotFoundException.class)
-    private ResponseEntity<PersonExceptionModel> notFound(PersonNotFoundException notFoundException) {
-        this.model = new PersonExceptionModel(HttpStatus.NOT_FOUND, notFoundException.getMessage());
+    private ResponseEntity<PersonExceptionModel> notFound(PersonNotFoundException exception) {
+        this.model = new PersonExceptionModel(HttpStatus.NOT_FOUND, exception.getMessage());
         return new ResponseEntity<>(model, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(PersonNotNullException.class)
+    private ResponseEntity<PersonExceptionModel> notNull(PersonNotNullException exception) {
+        this.model = new PersonExceptionModel(HttpStatus.BAD_REQUEST, exception.getMessage());
+        return new ResponseEntity<>(model, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(PersonExistException.class)
+    private ResponseEntity<PersonExceptionModel> exist(PersonExistException exception) {
+        this.model = new PersonExceptionModel(HttpStatus.NOT_ACCEPTABLE, exception.getMessage());
+        return new ResponseEntity<>(model, HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @ExceptionHandler(PersonNotRegisteredException.class)
+    private ResponseEntity<PersonExceptionModel> notRegistered(PersonNotRegisteredException exception) {
+        this.model = new PersonExceptionModel(HttpStatus.BAD_REQUEST, exception.getMessage());
+        return new ResponseEntity<>(model, HttpStatus.BAD_REQUEST);
     }
 }

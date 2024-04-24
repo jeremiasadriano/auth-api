@@ -1,6 +1,6 @@
 package com.my.knowlodge.knowlodge01.models;
 
-import com.my.knowlodge.knowlodge01.models.Enum.UserRoles;
+import com.my.knowlodge.knowlodge01.models.enums.UserRoles;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,4 +30,12 @@ public class Person {
     private Date bornDate;
     @Column(name = "userRoles", nullable = false)
     private UserRoles roles;
+
+    public Person(String name, String email, String password, Date bornDate, UserRoles role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.bornDate = bornDate;
+        this.roles = role;
+    }
 }

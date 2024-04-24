@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Component
 public class JwtService {
-    private final String SECURITY_KEY = "BANANOUUUAINDANAOCOMEUBANANOUUUAINDANAOCOMEU,JACOMEU?00000,JACOMEU?11111";
+    private final String SECURITY_KEY = "BANANOUUUAINDANAOCOMEUBANANOUUUAINDANAOCOMEUJACOMEU00000JACOMEU11111";
     private final long EXPIRATION_DATE = 100000000L;
     private final long CURRENT_DATE = System.currentTimeMillis();
 
