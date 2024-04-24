@@ -18,18 +18,17 @@ import java.io.IOException;
 @Configuration
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
-    private final JwtService jwtService;
     private final UserDetailsServiceImpl userDetailsService;
+    private final JwtService jwtService;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         String token = request.getHeader("Authorization");
         if (!token.isEmpty()) {
             token = token.substring(7);
-            String userEmail = jwtService.getUsername(token);
-
-            UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
-            if (jwtService.isValid(userDetails.getUsername(), token)) {
+            String userEmail = this.jwtService.getUsername(token);
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+            if (this.jwtService.isValid(userDetails.getUsername(), token)) {
                 var auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(auth);

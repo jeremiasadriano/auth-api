@@ -15,7 +15,7 @@ public class AuthUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return switch (this.person.getRoles()) {
-            case USER -> List.of(
+            case ADMIN -> List.of(
                     new SimpleGrantedAuthority("ROLE_ADMIN"),
                     new SimpleGrantedAuthority("ROLE_MANAGER"),
                     new SimpleGrantedAuthority("ROLE_USER")

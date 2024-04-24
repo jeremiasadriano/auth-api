@@ -11,24 +11,24 @@ import java.util.Date;
 
 @Component
 public class JwtService {
-    private final String SECRET_KEY = "BANANOUUINDANAOCOMEUBANANOUUAINDANAOCOMEU,JACOMEU?000000000,JACOMEU?1111111111";
-    private final long EXPIRATION_DATE = 1000000000L;
-    private final long EXACTLY_DATE = System.currentTimeMillis();
+    private final String SECURITY_KEY = "BANANOUUUAINDANAOCOMEUBANANOUUUAINDANAOCOMEU,JACOMEU?00000,JACOMEU?11111";
+    private final long EXPIRATION_DATE = 100000000L;
+    private final long CURRENT_DATE = System.currentTimeMillis();
 
     private SecretKey secretKey() {
-        return Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(SECRET_KEY));
+        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECURITY_KEY));
     }
 
     public String generateToken(String email) {
         return Jwts.builder()
                 .subject(email)
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(EXACTLY_DATE + EXPIRATION_DATE))
+                .issuedAt(new Date(CURRENT_DATE))
+                .expiration(new Date(CURRENT_DATE + EXPIRATION_DATE))
                 .signWith(secretKey())
                 .compact();
     }
 
-    private Claims getClaims(String token) {
+    private Claims claims(String token) {
         return Jwts.parser()
                 .verifyWith(secretKey())
                 .build()
@@ -37,14 +37,14 @@ public class JwtService {
     }
 
     public String getUsername(String token) {
-        return getClaims(token).getSubject();
+        return claims(token).getSubject();
     }
 
-    public Boolean isValid(String email, String token) {
+    public boolean isValid(String email, String token) {
         return getUsername(token).equals(email) && !isExpired(token);
     }
 
-    private Boolean isExpired(String token) {
-        return getClaims(token).getExpiration().before(new Date(EXACTLY_DATE));
+    private boolean isExpired(String token) {
+        return claims(token).getExpiration().before(new Date());
     }
 }
