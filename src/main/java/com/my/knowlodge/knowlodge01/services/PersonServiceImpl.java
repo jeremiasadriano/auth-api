@@ -6,6 +6,7 @@ import com.my.knowlodge.knowlodge01.exceptions.infra.PersonNotRegisteredExceptio
 import com.my.knowlodge.knowlodge01.models.Person;
 import com.my.knowlodge.knowlodge01.models.dto.AuthResponse;
 import com.my.knowlodge.knowlodge01.models.dto.PersonRequest;
+import com.my.knowlodge.knowlodge01.models.dto.PersonResponse;
 import com.my.knowlodge.knowlodge01.models.enums.UserRoles;
 import com.my.knowlodge.knowlodge01.repositories.PersonRepository;
 import com.my.knowlodge.knowlodge01.security.JwtService;
@@ -13,7 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,5 +37,12 @@ public class PersonServiceImpl implements PersonService {
         Person personSaved = this.personRepository.save(person);
         if (personSaved.getId() == null) throw new PersonNotRegisteredException();
         return new AuthResponse(this.jwtService.generateToken(request.email()));
+    }
+
+    @Override
+    public List<PersonResponse> listAll() {
+        return this.personRepository.findAll().stream()
+                .map(PersonResponse::convert)
+                .collect(Collectors.toList());
     }
 }

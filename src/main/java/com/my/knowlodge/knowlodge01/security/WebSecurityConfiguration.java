@@ -30,6 +30,8 @@ public class WebSecurityConfiguration {
                         .hasRole("ADMIN")
                         .requestMatchers("/manager/**")
                         .hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.GET, "/list")
+                        .permitAll()
                         .anyRequest()
                         .authenticated()
                 ).userDetailsService(userDetailsService)
@@ -43,6 +45,7 @@ public class WebSecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
