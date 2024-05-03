@@ -30,8 +30,8 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         try {
             if (token(request).isPresent()) {
-                String user = this.jwtService.getUsername(token(request).toString());
-                String finalToken = token(request).toString();
+                String finalToken = token(request).get();
+                String user = this.jwtService.getUsername(finalToken);
                 if (this.jwtService.isValid(user, finalToken)) {
                     UserDetails userDetails = this.userDetailsService.loadUserByUsername(user);
                     var auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -40,7 +40,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 }
             }
         } catch (Exception e) {
-            return;
+            System.out.println(e.getMessage());
         }
         filterChain.doFilter(request, response);
     }
