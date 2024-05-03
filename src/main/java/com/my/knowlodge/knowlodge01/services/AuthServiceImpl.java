@@ -1,6 +1,7 @@
 package com.my.knowlodge.knowlodge01.services;
 
 import com.my.knowlodge.knowlodge01.exceptions.infra.PersonExistException;
+import com.my.knowlodge.knowlodge01.exceptions.infra.PersonNotFoundException;
 import com.my.knowlodge.knowlodge01.exceptions.infra.PersonNotNullException;
 import com.my.knowlodge.knowlodge01.exceptions.infra.PersonNotRegisteredException;
 import com.my.knowlodge.knowlodge01.models.Person;
@@ -33,6 +34,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthResponse login(AuthRequest request) {
         if (request.email().isEmpty() || request.password().isEmpty()) throw new PersonNotNullException();
+        if (personByEmail(request.email()).isEmpty()) throw new PersonNotFoundException();
         var auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));
         if (auth.getPrincipal().toString().isEmpty()) throw new PersonNotNullException();
         return new AuthResponse(this.jwtService.generateToken(request.email()));
