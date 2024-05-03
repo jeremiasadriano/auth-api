@@ -2,6 +2,7 @@ package com.my.knowlodge.knowlodge01.models;
 
 import com.my.knowlodge.knowlodge01.models.enums.UserRoles;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,12 +24,14 @@ public class Person {
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "email", nullable = false, unique = true)
+    @Email(message = "The inputed email is not allowed")
     private String email;
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "age", nullable = false)
     private LocalDate bornDate;
     @Column(name = "userRoles", nullable = false)
+    @Enumerated(EnumType.STRING)
     private UserRoles roles;
 
     public Person(String name, String email, String password, LocalDate bornDate, UserRoles role) {

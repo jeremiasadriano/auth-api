@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -11,8 +12,10 @@ import java.util.Date;
 
 @Component
 public class JwtService {
-    private final String SECURITY_KEY = "BANANOUUUAINDANAOCOMEUBANANOUUUAINDANAOCOMEUJACOMEU00000JACOMEU11111";
-    private final long EXPIRATION_DATE = 100000000L;
+    @Value("${app.secret_key}")
+    private String SECURITY_KEY;
+    @Value("${app.expiration_date}")
+    private long EXPIRATION_DATE ;
     private final long CURRENT_DATE = System.currentTimeMillis();
 
     private SecretKey secretKey() {
