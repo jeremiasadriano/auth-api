@@ -12,6 +12,11 @@ services:
       - '1111:5432'
     volumes:
       - person-knowledge:/var/lib/postgresql/data
+    networks:
+      - person-knowledge-network
+
 volumes:
   person-knowledge:
     name: 'person-knowledge'
+networks:
+  - person-network:

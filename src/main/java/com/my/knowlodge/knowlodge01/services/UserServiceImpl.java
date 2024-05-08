@@ -1,10 +1,12 @@
 package com.my.knowlodge.knowlodge01.services;
 
 import com.my.knowlodge.knowlodge01.models.Person;
+import com.my.knowlodge.knowlodge01.models.dto.PersonResponse;
 import com.my.knowlodge.knowlodge01.repositories.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,4 +18,11 @@ public class UserServiceImpl implements UserService {
         return this.personRepository.findPersonByEmail(email);
     }
 
+    @Override
+    public List<PersonResponse> list() {
+        return this.personRepository.findAll()
+                .stream()
+                .map(PersonResponse::convert)
+                .toList();
+    }
 }

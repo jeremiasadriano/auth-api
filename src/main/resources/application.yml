@@ -15,3 +15,4 @@ app:
     token_prefix: ${APP.SECURITY.TOKEN.PREFIX}
     secret_key: ${APP.SECURITY.SECRET.KEY}
     expiration_date: ${APP.SECURITY.EXPIRATION.DATE}
+    cookie_name: ${APP.SECURITY.COOKIE_NAME}

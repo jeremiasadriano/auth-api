@@ -31,6 +31,8 @@ public class WebSecurityConfiguration {
                         .hasRole("ADMIN")
                         .requestMatchers("/manager/**")
                         .hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.POST, "/list/**")
+                        .hasRole("ADMIN")
                         .anyRequest()
                         .authenticated()
                 ).userDetailsService(userDetailsService)
