@@ -15,7 +15,7 @@ public class JwtService {
     @Value("${app.security.secret_key}")
     private String SECURITY_KEY;
     @Value("${app.security.expiration_date}")
-    private long EXPIRATION_DATE ;
+    private long EXPIRATION_DATE;
     private final long CURRENT_DATE = System.currentTimeMillis();
 
     private SecretKey secretKey() {
