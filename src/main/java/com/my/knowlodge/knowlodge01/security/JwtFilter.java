@@ -23,7 +23,7 @@ import java.util.Optional;
 public class JwtFilter extends OncePerRequestFilter {
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtService jwtService;
-    @Value("${app.token_prefix}")
+    @Value("${app.security.token_prefix}")
     private String TOKEN_PREFIX;
 
     @Override

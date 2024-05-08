@@ -12,9 +12,9 @@ import java.util.Date;
 
 @Component
 public class JwtService {
-    @Value("${app.secret_key}")
+    @Value("${app.security.secret_key}")
     private String SECURITY_KEY;
-    @Value("${app.expiration_date}")
+    @Value("${app.security.expiration_date}")
     private long EXPIRATION_DATE ;
     private final long CURRENT_DATE = System.currentTimeMillis();
 

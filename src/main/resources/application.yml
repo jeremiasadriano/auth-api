@@ -11,6 +11,7 @@ spring:
       ddl-auto: update
     show-sql: true
 app:
-  token_prefix: "Bearer "
-  secret_key: "BANANOUUUAINDANAOCOMEUBANANOUUUAINDANAOCOMEUJACOMEU00000JACOMEU11111"
-  expiration_date: 100000000
+  security:
+    token_prefix: "Bearer "
+    secret_key: "BANANOUUUAINDANAOCOMEUBANANOUUUAINDANAOCOMEUJACOMEU00000JACOMEU11111"
+    expiration_date: 100000000
