@@ -1,7 +1,7 @@
 package com.my.knowlodge.knowlodge01.security;
 
 import com.my.knowlodge.knowlodge01.exceptions.infra.PersonNotFoundException;
-import com.my.knowlodge.knowlodge01.models.AuthUser;
+import com.my.knowlodge.knowlodge01.models.AuthUserDetails;
 import com.my.knowlodge.knowlodge01.repositories.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.personRepository.findPersonByEmail(username)
-                .map(AuthUser::new)
+                .map(AuthUserDetails::new)
                 .orElseThrow(PersonNotFoundException::new);
     }
 }

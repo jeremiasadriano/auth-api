@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class AuthUser implements UserDetails {
+public class AuthUserDetails implements UserDetails {
     private final Person person;
 
     @Override
