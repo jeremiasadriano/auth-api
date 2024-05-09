@@ -32,5 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 
-### ENVIROMENT ###
+### MY IGNORE ###
 /src/main/resources/.env
+knowledge.log

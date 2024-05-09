@@ -2,6 +2,7 @@ package com.my.knowlodge.knowlodge01.controllers;
 
 import com.my.knowlodge.knowlodge01.models.dto.AuthRequest;
 import com.my.knowlodge.knowlodge01.models.dto.AuthResponse;
+import com.my.knowlodge.knowlodge01.models.dto.EmailModel;
 import com.my.knowlodge.knowlodge01.models.dto.PersonRequest;
 import com.my.knowlodge.knowlodge01.services.AuthService;
 import lombok.RequiredArgsConstructor;

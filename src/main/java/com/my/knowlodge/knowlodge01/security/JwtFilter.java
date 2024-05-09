@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,6 +23,7 @@ import java.util.Optional;
 @Configuration
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
+    private final static Logger log = LoggerFactory.getLogger(JwtFilter.class);
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtService jwtService;
     @Value("${app.security.token_prefix}")
@@ -29,6 +32,7 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         try {
+            log.info("Token from frontend started");
             if (token(request).isPresent()) {
                 String finalToken = token(request).get();
                 String user = this.jwtService.getUsername(finalToken);
@@ -40,7 +44,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error("Token error", e);
         }
         filterChain.doFilter(request, response);
     }

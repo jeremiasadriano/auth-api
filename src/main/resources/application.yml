@@ -11,13 +11,22 @@ spring:
       ddl-auto: update
     show-sql: true
   mail:
-    host:
-    port:
-    username:
-    password:
+    host: ${SPRING.MAIL.HOST}
+    port: ${SPRING.MAIL.PORT}
+    username: ${SPRING.MAIL.USER}
+    password: ${SPRING.MAIL.PASS}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 app:
   security:
     token_prefix: ${APP.SECURITY.TOKEN.PREFIX}
     secret_key: ${APP.SECURITY.SECRET.KEY}
     expiration_date: ${APP.SECURITY.EXPIRATION.DATE}
+logging:
+  file:
+    name: knowledge.log
