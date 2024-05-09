@@ -1,6 +1,6 @@
 package com.my.knowlodge.knowlodge01.services;
 
-import com.my.knowlodge.knowlodge01.models.dto.EmailModel;
+import com.my.knowlodge.knowlodge01.models.MailModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +17,7 @@ public class MailSenderServiceImp implements MailSenderService {
     private String emailFrom;
 
     @Override
-    public void registerConfirmation(EmailModel model) {
+    public void registerConfirmation(MailModel model) {
         try {
             log.info("Sending email to the user");
             SimpleMailMessage mailMessage = new SimpleMailMessage();

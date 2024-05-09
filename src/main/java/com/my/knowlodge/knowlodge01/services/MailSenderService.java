@@ -1,7 +1,7 @@
 package com.my.knowlodge.knowlodge01.services;
 
-import com.my.knowlodge.knowlodge01.models.dto.EmailModel;
+import com.my.knowlodge.knowlodge01.models.MailModel;
 
 public interface MailSenderService {
-    void registerConfirmation(EmailModel model);
+    void registerConfirmation(MailModel model);
 }

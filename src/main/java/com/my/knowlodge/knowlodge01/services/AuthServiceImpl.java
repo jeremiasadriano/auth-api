@@ -7,7 +7,7 @@ import com.my.knowlodge.knowlodge01.exceptions.infra.PersonNotRegisteredExceptio
 import com.my.knowlodge.knowlodge01.models.Person;
 import com.my.knowlodge.knowlodge01.models.dto.AuthRequest;
 import com.my.knowlodge.knowlodge01.models.dto.AuthResponse;
-import com.my.knowlodge.knowlodge01.models.dto.EmailModel;
+import com.my.knowlodge.knowlodge01.models.MailModel;
 import com.my.knowlodge.knowlodge01.models.dto.PersonRequest;
 import com.my.knowlodge.knowlodge01.models.enums.UserRoles;
 import com.my.knowlodge.knowlodge01.repositories.PersonRepository;
@@ -57,7 +57,7 @@ public class AuthServiceImpl implements AuthService {
         Person personSaved = this.personRepository.save(person);
         if (personSaved.getId() == null) throw new PersonNotRegisteredException();
 
-        var model = new EmailModel(request.email(), "App Knowledge Registration", "Hi ".concat(request.name()).concat("! Now you should finish your registration, clicking in the link down below"), "");
+        var model = new MailModel(request.email(), "App Knowledge Registration", "Hi ".concat(request.name()).concat("! Now you should finish your registration, clicking in the link down below"), "");
         this.mailSenderService.registerConfirmation(model);
         return new AuthResponse(this.jwtService.generateToken(request.email()));
     }
