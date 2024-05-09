@@ -2,7 +2,6 @@ package com.my.knowlodge.knowlodge01.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
@@ -26,8 +25,6 @@ public class JwtFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     @Value("${app.security.token_prefix}")
     private String TOKEN_PREFIX;
-    @Value("${app.security.cookie_name}")
-    private String COOKIE_NAME;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
@@ -46,27 +43,6 @@ public class JwtFilter extends OncePerRequestFilter {
             System.out.println(e.getMessage());
         }
         filterChain.doFilter(request, response);
-    }
-
-    public void createCookie(HttpServletResponse response, String token) {
-        Cookie cookie = new Cookie(COOKIE_NAME, TOKEN_PREFIX.concat(token));
-        cookie.setMaxAge(360);
-        cookie.setSecure(true);
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-    }
-
-    public String getCookie(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(COOKIE_NAME)) {
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
     }
 
     public Optional<String> token(HttpServletRequest request) {
