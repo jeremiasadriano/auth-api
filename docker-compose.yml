@@ -11,11 +11,11 @@ services:
     ports:
       - '1111:5432'
     volumes:
-      - person-knowledge:/var/lib/postgresql/data
+      - person-k:/var/lib/postgresql/data
     networks:
       - network-p
 volumes:
-  person-knowledge:
+  person-k:
     name: 'person-knowledge'
 networks:
   network-p:
