@@ -36,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
         if (request.email().isEmpty() || request.password().isEmpty()) throw new PersonNotNullException();
         if (personByEmail(request.email()).isEmpty()) throw new PersonNotFoundException();
         var auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));
-        if (auth.getPrincipal().toString().isEmpty()) throw new PersonNotNullException();
+        if (!auth.isAuthenticated()) throw new PersonNotNullException();
         return new AuthResponse(this.jwtService.generateToken(request.email()));
     }
 

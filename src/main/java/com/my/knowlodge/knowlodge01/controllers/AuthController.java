@@ -1,15 +1,14 @@
 package com.my.knowlodge.knowlodge01.controllers;
 
 import com.my.knowlodge.knowlodge01.models.dto.AuthRequest;
+import com.my.knowlodge.knowlodge01.models.dto.AuthResponse;
 import com.my.knowlodge.knowlodge01.models.dto.PersonRequest;
 import com.my.knowlodge.knowlodge01.security.JwtFilter;
 import com.my.knowlodge.knowlodge01.services.AuthService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,18 +28,8 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<HttpStatus> login(@RequestBody AuthRequest request) {
-        String token = this.authService.login(request).token();
-        ResponseCookie cookie = ResponseCookie.from(COOKIE_NAME, TOKEN_PREFIX.concat(token))
-                .httpOnly(true)
-                .path("/")
-                .maxAge(360)
-                .secure(false)
-                .build();
-
-        return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, cookie.toString())
-                .build();
+    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+        return new ResponseEntity<>(this.authService.login(request), HttpStatus.OK);
     }
 
     @PostMapping("/register")

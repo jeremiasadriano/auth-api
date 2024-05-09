@@ -70,7 +70,7 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
     public Optional<String> token(HttpServletRequest request) {
-        String token = getCookie(request);
+        String token = request.getHeader("Authorization");
         if (StringUtils.hasText(token) && token.startsWith(TOKEN_PREFIX)) {
             return Optional.of(token.replace(TOKEN_PREFIX, ""));
         }
