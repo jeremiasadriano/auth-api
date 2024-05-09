@@ -10,6 +10,12 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  mail:
+    host:
+    port:
+    username:
+    password:
+
 app:
   security:
     token_prefix: ${APP.SECURITY.TOKEN.PREFIX}

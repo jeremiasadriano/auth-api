@@ -34,17 +34,24 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthResponse login(AuthRequest request) {
         if (request.email().isEmpty() || request.password().isEmpty()) throw new PersonNotNullException();
-        if (personByEmail(request.email()).isEmpty()) throw new PersonNotFoundException();
         var auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));
-        if (!auth.isAuthenticated()) throw new PersonNotNullException();
+        if (!auth.isAuthenticated()) throw new PersonNotFoundException();
         return new AuthResponse(this.jwtService.generateToken(request.email()));
     }
 
     @Override
     public AuthResponse register(PersonRequest request) {
-        if (request == null) throw new PersonNotNullException();
+        if (request.email().isEmpty() || request.password().isEmpty() || request.age() == null || request.name().isEmpty()) {
+            throw new PersonNotNullException();
+        }
         if (personByEmail(request.email()).isPresent()) throw new PersonExistException();
-        Person person = new Person(request.name(), request.email(), passwordEncoder.encode(request.password()), request.age(), UserRoles.USER);
+        Person person = Person.builder()
+                .name(request.name())
+                .email(request.email())
+                .password(passwordEncoder.encode(request.password()))
+                .bornDate(request.age())
+                .roles(UserRoles.USER)
+                .build();
         Person personSaved = this.personRepository.save(person);
         if (personSaved.getId() == null) throw new PersonNotRegisteredException();
         return new AuthResponse(this.jwtService.generateToken(request.email()));

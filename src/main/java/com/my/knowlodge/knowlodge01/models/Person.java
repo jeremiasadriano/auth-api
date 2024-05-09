@@ -3,10 +3,7 @@ package com.my.knowlodge.knowlodge01.models;
 import com.my.knowlodge.knowlodge01.models.enums.UserRoles;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -16,6 +13,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @SequenceGenerator(sequenceName = "person_seq", name = "person_gen", allocationSize = 1, initialValue = 2)
 public class Person {
     @Id
@@ -33,12 +31,4 @@ public class Person {
     @Column(name = "userRoles", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRoles roles;
-
-    public Person(String name, String email, String password, LocalDate bornDate, UserRoles role) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.bornDate = bornDate;
-        this.roles = role;
-    }
 }
