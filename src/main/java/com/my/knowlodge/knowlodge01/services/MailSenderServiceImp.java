@@ -19,12 +19,14 @@ public class MailSenderServiceImp implements MailSenderService {
     @Override
     public void registerConfirmation(EmailModel model) {
         try {
+            log.info("Sending email to the user");
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setFrom(emailFrom);
             mailMessage.setTo(model.to());
             mailMessage.setSubject(model.subject());
             mailMessage.setText(model.message());
             this.javaMailSender.send(mailMessage);
+            log.info("Email sent successful");
         } catch (Exception e) {
             log.error("The mail can't be sent", e);
         }

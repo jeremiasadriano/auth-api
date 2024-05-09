@@ -21,7 +21,6 @@ spring:
           auth: true
           starttls:
             enable: true
-
 app:
   security:
     token_prefix: ${APP.SECURITY.TOKEN.PREFIX}

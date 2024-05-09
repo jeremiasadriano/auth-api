@@ -57,7 +57,7 @@ public class AuthServiceImpl implements AuthService {
         Person personSaved = this.personRepository.save(person);
         if (personSaved.getId() == null) throw new PersonNotRegisteredException();
 
-        var model = new EmailModel(request.email(), "App Knowledge Registration", "Hi".concat(request.name()).concat("! Now you should finish your registration, clicking in the link down below"), "");
+        var model = new EmailModel(request.email(), "App Knowledge Registration", "Hi ".concat(request.name()).concat("! Now you should finish your registration, clicking in the link down below"), "");
         this.mailSenderService.registerConfirmation(model);
         return new AuthResponse(this.jwtService.generateToken(request.email()));
     }
