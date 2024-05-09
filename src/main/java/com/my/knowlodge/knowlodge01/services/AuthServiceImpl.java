@@ -12,6 +12,7 @@ import com.my.knowlodge.knowlodge01.models.dto.PersonRequest;
 import com.my.knowlodge.knowlodge01.models.enums.UserRoles;
 import com.my.knowlodge.knowlodge01.repositories.PersonRepository;
 import com.my.knowlodge.knowlodge01.security.JwtService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final PersonRepository personRepository;
@@ -47,16 +49,9 @@ public class AuthServiceImpl implements AuthService {
             throw new PersonNotNullException();
         }
         if (personByEmail(request.email()).isPresent()) throw new PersonExistException();
-        Person person = Person.builder()
-                .name(request.name())
-                .email(request.email())
-                .password(passwordEncoder.encode(request.password()))
-                .bornDate(request.age())
-                .roles(UserRoles.USER)
-                .build();
+        Person person = new Person(request.name(), request.email(), passwordEncoder.encode(request.password()), request.age(), UserRoles.USER);
         Person personSaved = this.personRepository.save(person);
         if (personSaved.getId() == null) throw new PersonNotRegisteredException();
-
         var model = new MailModel(request.email(), "App Knowledge Registration", "Hi ".concat(request.name()).concat("! Now you should finish your registration, clicking in the link down below"), "");
         this.mailSenderService.registerConfirmation(model);
         return new AuthResponse(this.jwtService.generateToken(request.email()));

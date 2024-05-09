@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @SequenceGenerator(sequenceName = "person_seq", name = "person_gen", allocationSize = 1, initialValue = 2)
 public class Person {
     @Id
@@ -31,4 +30,12 @@ public class Person {
     @Column(name = "userRoles", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRoles roles;
+
+    public Person(String name, String email, String password, LocalDate bornDate, UserRoles roles) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.bornDate = bornDate;
+        this.roles = roles;
+    }
 }
