@@ -22,7 +22,7 @@ import java.util.Objects;
 public class MailSenderServiceImp implements MailSenderService {
     private final JavaMailSender javaMailSender;
     @Value("${spring.mail.username}")
-    private String emailFrom;
+    private String sender;
 
     @Async
     @Override
@@ -31,7 +31,7 @@ public class MailSenderServiceImp implements MailSenderService {
             log.info("Sending email to the user");
             MimeMessage mimeMessage = this.javaMailSender.createMimeMessage();
             MimeMessageHelper mailSender = new MimeMessageHelper(mimeMessage, null);
-            mailSender.setFrom(emailFrom);
+            mailSender.setFrom(sender);
             mailSender.setTo(model.to());
             mailSender.setSubject(model.subject());
             mailSender.setText(model.message());

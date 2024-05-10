@@ -3,7 +3,7 @@ services:
   person-db:
     container_name: 'Person-knowledge-db'
     image: postgres:16.0
-    restart: always
+    restart: on-failure
     environment:
       POSTGRES_USER: person
       POSTGRES_PASSWORD: root
