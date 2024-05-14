@@ -1,6 +1,6 @@
 package com.my.knowlodge.knowlodge01.services;
 
-import com.my.knowlodge.knowlodge01.models.MailModel;
+import com.my.knowlodge.knowlodge01.models.infra.MailModel;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,9 @@ import java.util.Objects;
 public class MailSenderServiceImp implements MailSenderService {
     private final JavaMailSender javaMailSender;
     @Value("${spring.mail.username}")
-    private String sender;
+    private String senderEmail;
+    @Value("${spring.mail.sender.person}")
+    private String senderName;
 
     @Async
     @Override
@@ -30,8 +32,8 @@ public class MailSenderServiceImp implements MailSenderService {
         try {
             log.info("Sending email to the user");
             MimeMessage mimeMessage = this.javaMailSender.createMimeMessage();
-            MimeMessageHelper mailSender = new MimeMessageHelper(mimeMessage, null);
-            mailSender.setFrom(sender);
+            MimeMessageHelper mailSender = new MimeMessageHelper(mimeMessage);
+            mailSender.setFrom(senderEmail, senderName);
             mailSender.setTo(model.to());
             mailSender.setSubject(model.subject());
             mailSender.setText(model.message());

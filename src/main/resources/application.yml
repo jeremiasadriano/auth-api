@@ -15,6 +15,8 @@ spring:
     port: ${SPRING.MAIL.PORT}
     username: ${SPRING.MAIL.USER}
     password: ${SPRING.MAIL.PASS}
+    sender:
+      person: ${SPRING.MAIL.SENDER.PERSON}
     properties:
       mail:
         smtp:

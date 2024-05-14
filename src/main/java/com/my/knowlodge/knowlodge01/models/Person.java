@@ -1,6 +1,6 @@
 package com.my.knowlodge.knowlodge01.models;
 
-import com.my.knowlodge.knowlodge01.models.enums.UserRoles;
+import com.my.knowlodge.knowlodge01.models.infra.UserRoles;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
@@ -21,7 +21,7 @@ public class Person {
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "email", nullable = false, unique = true)
-    @Email(message = "The inputed email is not allowed")
+    @Email(message = "The inputted email is not allowed")
     private String email;
     @Column(name = "password", nullable = false)
     private String password;

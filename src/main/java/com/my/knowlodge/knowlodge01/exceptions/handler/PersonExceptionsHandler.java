@@ -1,6 +1,6 @@
-package com.my.knowlodge.knowlodge01.exceptions.infra;
+package com.my.knowlodge.knowlodge01.exceptions.handler;
 
-import com.my.knowlodge.knowlodge01.exceptions.model.PersonExceptionModel;
+import com.my.knowlodge.knowlodge01.exceptions.PersonExceptionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

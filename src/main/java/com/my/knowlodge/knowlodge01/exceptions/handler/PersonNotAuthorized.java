@@ -1,4 +1,4 @@
-package com.my.knowlodge.knowlodge01.exceptions.infra;
+package com.my.knowlodge.knowlodge01.exceptions.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

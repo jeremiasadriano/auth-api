@@ -1,20 +1,18 @@
 package com.my.knowlodge.knowlodge01.services;
 
-import com.my.knowlodge.knowlodge01.exceptions.infra.PersonExistException;
-import com.my.knowlodge.knowlodge01.exceptions.infra.PersonNotFoundException;
-import com.my.knowlodge.knowlodge01.exceptions.infra.PersonNotNullException;
-import com.my.knowlodge.knowlodge01.exceptions.infra.PersonNotRegisteredException;
-import com.my.knowlodge.knowlodge01.models.MailModel;
+import com.my.knowlodge.knowlodge01.exceptions.handler.PersonExistException;
+import com.my.knowlodge.knowlodge01.exceptions.handler.PersonNotFoundException;
+import com.my.knowlodge.knowlodge01.exceptions.handler.PersonNotNullException;
+import com.my.knowlodge.knowlodge01.exceptions.handler.PersonNotRegisteredException;
 import com.my.knowlodge.knowlodge01.models.Person;
 import com.my.knowlodge.knowlodge01.models.dto.AuthRequest;
 import com.my.knowlodge.knowlodge01.models.dto.AuthResponse;
 import com.my.knowlodge.knowlodge01.models.dto.PersonRequest;
-import com.my.knowlodge.knowlodge01.models.enums.UserRoles;
+import com.my.knowlodge.knowlodge01.models.infra.MailModel;
+import com.my.knowlodge.knowlodge01.models.infra.UserRoles;
 import com.my.knowlodge.knowlodge01.repositories.PersonRepository;
 import com.my.knowlodge.knowlodge01.security.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,7 +23,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-    private static final Logger log = LoggerFactory.getLogger(AuthServiceImpl.class);
     private final AuthenticationManager authenticationManager;
     private final PersonRepository personRepository;
     private final PasswordEncoder passwordEncoder;

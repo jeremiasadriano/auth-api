@@ -1,5 +1,6 @@
-package com.my.knowlodge.knowlodge01.models;
+package com.my.knowlodge.knowlodge01.models.infra;
 
+import com.my.knowlodge.knowlodge01.models.Person;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
