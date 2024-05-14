@@ -1,9 +1,9 @@
 package com.my.knowlodge.knowlodge01.services;
 
-import com.my.knowlodge.knowlodge01.exceptions.handler.PersonExistException;
-import com.my.knowlodge.knowlodge01.exceptions.handler.PersonNotFoundException;
-import com.my.knowlodge.knowlodge01.exceptions.handler.PersonNotNullException;
-import com.my.knowlodge.knowlodge01.exceptions.handler.PersonNotRegisteredException;
+import com.my.knowlodge.knowlodge01.exceptions.handlers.PersonExistException;
+import com.my.knowlodge.knowlodge01.exceptions.handlers.PersonNotFoundException;
+import com.my.knowlodge.knowlodge01.exceptions.handlers.PersonNotNullException;
+import com.my.knowlodge.knowlodge01.exceptions.handlers.PersonNotRegisteredException;
 import com.my.knowlodge.knowlodge01.models.Person;
 import com.my.knowlodge.knowlodge01.models.dto.AuthRequest;
 import com.my.knowlodge.knowlodge01.models.dto.AuthResponse;

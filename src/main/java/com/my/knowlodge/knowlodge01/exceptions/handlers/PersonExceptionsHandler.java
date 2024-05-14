@@ -1,4 +1,4 @@
-package com.my.knowlodge.knowlodge01.exceptions.handler;
+package com.my.knowlodge.knowlodge01.exceptions.handlers;
 
 import com.my.knowlodge.knowlodge01.exceptions.PersonExceptionModel;
 import org.springframework.http.HttpStatus;

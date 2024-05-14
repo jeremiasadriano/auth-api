@@ -1,6 +1,6 @@
 package com.my.knowlodge.knowlodge01.security;
 
-import com.my.knowlodge.knowlodge01.exceptions.handler.PersonNotFoundException;
+import com.my.knowlodge.knowlodge01.exceptions.handlers.PersonNotFoundException;
 import com.my.knowlodge.knowlodge01.models.infra.AuthUserDetails;
 import com.my.knowlodge.knowlodge01.repositories.PersonRepository;
 import lombok.RequiredArgsConstructor;

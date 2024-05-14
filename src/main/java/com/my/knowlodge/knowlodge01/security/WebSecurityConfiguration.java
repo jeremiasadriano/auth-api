@@ -1,6 +1,6 @@
 package com.my.knowlodge.knowlodge01.security;
 
-import com.my.knowlodge.knowlodge01.exceptions.handler.PersonNotAuthorized;
+import com.my.knowlodge.knowlodge01.exceptions.handlers.PersonNotAuthorized;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

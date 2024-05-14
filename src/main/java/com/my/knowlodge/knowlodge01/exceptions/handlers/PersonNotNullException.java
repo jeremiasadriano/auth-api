@@ -1,4 +1,4 @@
-package com.my.knowlodge.knowlodge01.exceptions.handler;
+package com.my.knowlodge.knowlodge01.exceptions.handlers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
