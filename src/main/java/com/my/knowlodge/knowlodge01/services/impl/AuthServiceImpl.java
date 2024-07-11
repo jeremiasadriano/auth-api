@@ -1,4 +1,4 @@
-package com.my.knowlodge.knowlodge01.services;
+package com.my.knowlodge.knowlodge01.services.impl;
 
 import com.my.knowlodge.knowlodge01.exceptions.handlers.PersonExistException;
 import com.my.knowlodge.knowlodge01.exceptions.handlers.PersonNotFoundException;
@@ -12,6 +12,8 @@ import com.my.knowlodge.knowlodge01.models.infra.MailModel;
 import com.my.knowlodge.knowlodge01.models.infra.UserRoles;
 import com.my.knowlodge.knowlodge01.repositories.PersonRepository;
 import com.my.knowlodge.knowlodge01.security.JwtService;
+import com.my.knowlodge.knowlodge01.services.AuthService;
+import com.my.knowlodge.knowlodge01.services.MailSenderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

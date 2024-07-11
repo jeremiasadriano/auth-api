@@ -1,6 +1,7 @@
-package com.my.knowlodge.knowlodge01.services;
+package com.my.knowlodge.knowlodge01.services.impl;
 
 import com.my.knowlodge.knowlodge01.models.infra.MailModel;
+import com.my.knowlodge.knowlodge01.services.MailSenderService;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

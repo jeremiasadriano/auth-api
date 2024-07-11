@@ -1,8 +1,9 @@
-package com.my.knowlodge.knowlodge01.services;
+package com.my.knowlodge.knowlodge01.services.impl;
 
 import com.my.knowlodge.knowlodge01.models.Person;
 import com.my.knowlodge.knowlodge01.models.dto.PersonResponse;
 import com.my.knowlodge.knowlodge01.repositories.PersonRepository;
+import com.my.knowlodge.knowlodge01.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
